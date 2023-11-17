@@ -218,12 +218,14 @@ class _HorizontalWeekCalendarState extends State<HorizontalWeekCalendar> {
                   if (listOfWeeks.isNotEmpty)
                     for (int ind = 0; ind < listOfWeeks.length; ind++)
                       Container(
-                        height: boxHeight,
+                        height: boxHeight + 5,
                         width: withOfScreen,
                         color: Colors.transparent,
                         child: Row(
                           children: [
-                            for (int weekIndex = 0; weekIndex < listOfWeeks[ind].length; weekIndex++)
+                            for (int weekIndex = 0;
+                                weekIndex < listOfWeeks[ind].length;
+                                weekIndex++)
                               Expanded(
                                 child: GestureDetector(
                                   onTap: listOfWeeks[ind][weekIndex].isBefore(DateTime.now())
@@ -236,7 +238,8 @@ class _HorizontalWeekCalendarState extends State<HorizontalWeekCalendar> {
                                   child: Container(
                                     alignment: Alignment.center,
                                     decoration: BoxDecoration(
-                                      color: DateFormat('dd-MM-yyyy').format(listOfWeeks[ind][weekIndex]) ==
+                                      color: DateFormat('dd-MM-yyyy')
+                                                  .format(listOfWeeks[ind][weekIndex]) ==
                                               DateFormat('dd-MM-yyyy').format(selectedDate)
                                           ? widget.activeBackgroundColor ?? theme.primaryColor
                                           : listOfWeeks[ind][weekIndex].isBefore(DateTime.now())
@@ -260,9 +263,11 @@ class _HorizontalWeekCalendarState extends State<HorizontalWeekCalendar> {
                                               style: theme.textTheme.titleLarge!.copyWith(
                                                 color: DateFormat('dd-MM-yyyy')
                                                             .format(listOfWeeks[ind][weekIndex]) ==
-                                                        DateFormat('dd-MM-yyyy').format(selectedDate)
+                                                        DateFormat('dd-MM-yyyy')
+                                                            .format(selectedDate)
                                                     ? widget.activeTextColor ?? Colors.white
-                                                    : listOfWeeks[ind][weekIndex].isBefore(DateTime.now())
+                                                    : listOfWeeks[ind][weekIndex]
+                                                            .isBefore(DateTime.now())
                                                         ? widget.inactiveTextColor ??
                                                             Colors.white.withOpacity(.2)
                                                         : widget.disabledTextColor ?? Colors.white,
@@ -285,8 +290,10 @@ class _HorizontalWeekCalendarState extends State<HorizontalWeekCalendar> {
                                                           .format(listOfWeeks[ind][weekIndex]) ==
                                                       DateFormat('dd-MM-yyyy').format(selectedDate)
                                                   ? widget.activeTextColor ?? Colors.white
-                                                  : listOfWeeks[ind][weekIndex].isBefore(DateTime.now())
-                                                      ? widget.inactiveTextColor ?? Colors.white.withOpacity(.2)
+                                                  : listOfWeeks[ind][weekIndex]
+                                                          .isBefore(DateTime.now())
+                                                      ? widget.inactiveTextColor ??
+                                                          Colors.white.withOpacity(.2)
                                                       : widget.disabledTextColor ?? Colors.white,
                                             ),
                                           ),
