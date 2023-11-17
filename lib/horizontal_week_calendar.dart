@@ -218,7 +218,7 @@ class _HorizontalWeekCalendarState extends State<HorizontalWeekCalendar> {
                   if (listOfWeeks.isNotEmpty)
                     for (int ind = 0; ind < listOfWeeks.length; ind++)
                       Container(
-                        height: boxHeight + 5,
+                        height: boxHeight +10 ,
                         width: withOfScreen,
                         color: Colors.transparent,
                         child: Row(
@@ -250,7 +250,7 @@ class _HorizontalWeekCalendarState extends State<HorizontalWeekCalendar> {
                                         color: theme.scaffoldBackgroundColor,
                                       ),
                                     ),
-                                    child: Flexible(
+                                    child: SingleChildScrollView(
                                       child: Column(
                                         mainAxisAlignment: MainAxisAlignment.center,
                                         crossAxisAlignment: CrossAxisAlignment.center,
