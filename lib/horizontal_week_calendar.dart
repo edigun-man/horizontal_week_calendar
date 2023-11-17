@@ -218,7 +218,7 @@ class _HorizontalWeekCalendarState extends State<HorizontalWeekCalendar> {
                   if (listOfWeeks.isNotEmpty)
                     for (int ind = 0; ind < listOfWeeks.length; ind++)
                       Container(
-                        height: boxHeight +10 ,
+                        height: boxHeight + 10,
                         width: withOfScreen,
                         color: Colors.transparent,
                         child: Row(
@@ -250,17 +250,46 @@ class _HorizontalWeekCalendarState extends State<HorizontalWeekCalendar> {
                                         color: theme.scaffoldBackgroundColor,
                                       ),
                                     ),
-                                    child: SingleChildScrollView(
-                                      child: Column(
-                                        mainAxisAlignment: MainAxisAlignment.center,
-                                        crossAxisAlignment: CrossAxisAlignment.center,
-                                        children: [
-                                          FittedBox(
-                                            child: Text(
-                                              // "$weekIndex: ${listOfWeeks[ind][weekIndex] == DateTime.now()}",
-                                              "${listOfWeeks[ind][weekIndex].day}",
+                                    child: ScrollConfiguration(
+                                      behavior: ScrollConfiguration.of(context)
+                                          .copyWith(scrollbars: false),
+                                      child: SingleChildScrollView(
+                                        child: Column(
+                                          mainAxisAlignment: MainAxisAlignment.center,
+                                          crossAxisAlignment: CrossAxisAlignment.center,
+                                          children: [
+                                            FittedBox(
+                                              child: Text(
+                                                // "$weekIndex: ${listOfWeeks[ind][weekIndex] == DateTime.now()}",
+                                                "${listOfWeeks[ind][weekIndex].day}",
+                                                textAlign: TextAlign.center,
+                                                style: theme.textTheme.titleLarge!.copyWith(
+                                                  color: DateFormat('dd-MM-yyyy').format(
+                                                              listOfWeeks[ind][weekIndex]) ==
+                                                          DateFormat('dd-MM-yyyy')
+                                                              .format(selectedDate)
+                                                      ? widget.activeTextColor ?? Colors.white
+                                                      : listOfWeeks[ind][weekIndex]
+                                                              .isBefore(DateTime.now())
+                                                          ? widget.inactiveTextColor ??
+                                                              Colors.white.withOpacity(.2)
+                                                          : widget.disabledTextColor ??
+                                                              Colors.white,
+                                                  fontWeight: FontWeight.bold,
+                                                ),
+                                              ),
+                                            ),
+                                            const SizedBox(
+                                              height: 4,
+                                            ),
+                                            Text(
+                                              DateFormat(
+                                                'EEE',
+                                              ).format(
+                                                listOfWeeks[ind][weekIndex],
+                                              ),
                                               textAlign: TextAlign.center,
-                                              style: theme.textTheme.titleLarge!.copyWith(
+                                              style: theme.textTheme.bodyLarge!.copyWith(
                                                 color: DateFormat('dd-MM-yyyy')
                                                             .format(listOfWeeks[ind][weekIndex]) ==
                                                         DateFormat('dd-MM-yyyy')
@@ -271,33 +300,10 @@ class _HorizontalWeekCalendarState extends State<HorizontalWeekCalendar> {
                                                         ? widget.inactiveTextColor ??
                                                             Colors.white.withOpacity(.2)
                                                         : widget.disabledTextColor ?? Colors.white,
-                                                fontWeight: FontWeight.bold,
                                               ),
                                             ),
-                                          ),
-                                          const SizedBox(
-                                            height: 4,
-                                          ),
-                                          Text(
-                                            DateFormat(
-                                              'EEE',
-                                            ).format(
-                                              listOfWeeks[ind][weekIndex],
-                                            ),
-                                            textAlign: TextAlign.center,
-                                            style: theme.textTheme.bodyLarge!.copyWith(
-                                              color: DateFormat('dd-MM-yyyy')
-                                                          .format(listOfWeeks[ind][weekIndex]) ==
-                                                      DateFormat('dd-MM-yyyy').format(selectedDate)
-                                                  ? widget.activeTextColor ?? Colors.white
-                                                  : listOfWeeks[ind][weekIndex]
-                                                          .isBefore(DateTime.now())
-                                                      ? widget.inactiveTextColor ??
-                                                          Colors.white.withOpacity(.2)
-                                                      : widget.disabledTextColor ?? Colors.white,
-                                            ),
-                                          ),
-                                        ],
+                                          ],
+                                        ),
                                       ),
                                     ),
                                   ),
