@@ -250,10 +250,11 @@ class _HorizontalWeekCalendarState extends State<HorizontalWeekCalendar> {
                                         color: theme.scaffoldBackgroundColor,
                                       ),
                                     ),
-                                    child: Center(
-                                      child: ListView(
-                                        shrinkWrap: true,
-                                        physics: NeverScrollableScrollPhysics(),
+                                    child: SingleChildScrollView(
+                                      physics: NeverScrollableScrollPhysics(),
+                                      child: Column(
+                                        mainAxisAlignment: MainAxisAlignment.center,
+                                        crossAxisAlignment: CrossAxisAlignment.center,
                                         children: [
                                           FittedBox(
                                             child: Text(
